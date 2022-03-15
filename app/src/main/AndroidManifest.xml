@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KisahNabi">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.bookmark.BookmarkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.detail.DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
