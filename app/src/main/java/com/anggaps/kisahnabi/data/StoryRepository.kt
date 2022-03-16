@@ -57,6 +57,7 @@ class StoryRepository private constructor(
                     val story = StoryEntity(
                         response.id,
                         response.titleName,
+                        response.turun,
                         response.desc,
                         false,
                         response.imagePath

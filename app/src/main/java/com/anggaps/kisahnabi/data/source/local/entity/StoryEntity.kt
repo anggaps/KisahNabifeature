@@ -16,6 +16,9 @@ data class StoryEntity(
     @ColumnInfo(name = "titleName")
     var titleName :String,
 
+    @ColumnInfo(name = "turun")
+    var turun :String,
+
     @ColumnInfo(name = "desc")
     var desc :String,
 

@@ -1,4 +1,3 @@
 package com.anggaps.kisahnabi.ui.detail
 
-class DetailViewModel {
-}
+class DetailViewModel

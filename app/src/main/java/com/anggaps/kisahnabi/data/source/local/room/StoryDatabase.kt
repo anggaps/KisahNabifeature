@@ -14,7 +14,7 @@ import com.anggaps.kisahnabi.data.source.local.entity.StoryEntity
 )
 
 abstract class StoryDatabase:RoomDatabase() {
-    abstract fun storyDao(): StoryEntity
+    abstract fun storyDao(): StoryDao
 
     companion object{
 

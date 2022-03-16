@@ -1,13 +1,11 @@
 package com.anggaps.kisahnabi.utils
 
 import android.content.Context
-import com.anggaps.kisahnabi.data.source.remote.response.DetailStoryResponse
 import com.anggaps.kisahnabi.data.source.remote.response.StoryListResponse
-import com.google.gson.JsonObject
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
-import java.util.ArrayList
+
 
 class JsonHelper(private val context :Context) {
 
@@ -60,11 +58,12 @@ class JsonHelper(private val context :Context) {
 
                 val id =story.getString("id")
                 val title =story.getString("titleName")
+                val turun =story.getString("turun")
                 val desc = story.getString("desc")
                 val imagePath = story.getString("imagePath")
 
 
-                val storyResponse = StoryListResponse(id, title, desc, imagePath)
+                val storyResponse = StoryListResponse(id, title,turun, desc, imagePath)
 
                 list.add(storyResponse)
             }
@@ -74,21 +73,7 @@ class JsonHelper(private val context :Context) {
         return list
     }
 
-//    fun loadContent(storyId: String?): DetailStoryResponse {
-//        val fileName = String.format("Content_%s.json", storyId)
-//        var contentResponse: ContentResponse? = null
-//        try {
-//            val result = parsingFileToString(fileName)
-//            if (result != null) {
-//                val responseObject = JSONObject(result)
-//                val content = responseObject.getString("content")
-//                contentResponse = ContentResponse(moduleId, content)
-//            }
-//        } catch (e: JSONException) {
-//            e.printStackTrace()
-//        }
-//        return contentResponse as ContentResponse
-//    }
+
 
 
 }

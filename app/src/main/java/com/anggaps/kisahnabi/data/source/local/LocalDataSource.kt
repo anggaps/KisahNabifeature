@@ -8,7 +8,7 @@ class LocalDataSource private constructor(private val mStoryDao: StoryDao) {
     companion object {
         private var INSTANCE: LocalDataSource? = null
 
-        fun getInstance(storyDao: StoryEntity): LocalDataSource =
+        fun getInstance(storyDao: StoryDao): LocalDataSource =
             INSTANCE ?: LocalDataSource(storyDao)
     }
 

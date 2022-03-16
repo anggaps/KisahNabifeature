@@ -7,12 +7,18 @@ import com.anggaps.kisahnabi.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
+    companion object{
+        const val EXTRA_STORY = "extra story"
+    }
+
     private var _activityDetailBinding :ActivityDetailBinding ? = null
     private val binding get() = _activityDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
     }
+
+
 
 
 

@@ -4,47 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.MainActivity">
+    tools:context=".ui.home.MainActivity"
+    android:background="@color/whiteGray">
+
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+      >
 
-            <View
-                android:id="@+id/view2"
-                android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:background="@drawable/bg_chocholate"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!--            <View-->
+            <!--                android:id="@+id/view2"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="180dp"-->
+            <!--                android:background="@drawable/bg_chocholate"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <View
                 android:id="@+id/view3"
-                android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:layout_marginTop="86dp"
+                android:layout_width="wrap_content"
+                android:layout_height="575dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_home_rad"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.501" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_Story"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white"
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:scrollbarAlwaysDrawVerticalTrack="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view13"
+                app:layout_constraintVertical_bias="0.0"
+                tools:listitem="@layout/item_list" />
 
             <View
                 android:id="@+id/view13"
                 android:layout_width="60dp"
                 android:layout_height="5dp"
-                android:layout_marginTop="102dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/home_rectangle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                app:layout_constraintTop_toTopOf="@+id/view3" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
