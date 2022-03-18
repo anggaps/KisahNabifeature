@@ -57,7 +57,9 @@ class StoryRepository private constructor(
                     val story = StoryEntity(
                         response.id,
                         response.titleName,
-                        response.turun,
+                        response.usia,
+                        response.tahunKelahiran,
+                        response.tempatKelahiran,
                         response.desc,
                         false,
                         response.imagePath
@@ -70,6 +72,41 @@ class StoryRepository private constructor(
         }.asLiveData()
     }
 
+    override fun getDetailStory(id: String): LiveData<Resource<StoryEntity>> {
+        return object : NetworkBoundResource<StoryEntity, List<StoryListResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<StoryEntity> =
+                localDataSource.getDetailStory(id)
+
+            override fun shouldFetch(data: StoryEntity?): Boolean =
+                data?.id == null || data.id.isEmpty()
+
+            override fun createCall(): LiveData<ApiResponse<List<StoryListResponse>>> =
+                remoteDataSource.getDetailStory(id)
+
+            override fun saveCallResult(data: List<StoryListResponse>) {
+                val detailList = ArrayList<StoryEntity>()
+                for (response in data) {
+                    val story = StoryEntity(
+                        response.id,
+                        response.titleName,
+                        response.usia,
+                        response.tahunKelahiran,
+                        response.tempatKelahiran,
+                        response.desc,
+                        false,
+                        response.imagePath
+                    )
+                    detailList.add(story)
+                }
+                localDataSource.insertStory(detailList)
+
+            }
+
+
+        }.asLiveData()
+    }
+
+
     override fun getBookmarkedStory(): LiveData<PagedList<StoryEntity>> {
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
@@ -78,6 +115,7 @@ class StoryRepository private constructor(
             .build()
         return LivePagedListBuilder(localDataSource.getBookmarkedStory(), config).build()
     }
+
 
     override fun setStoryBookmark(story: StoryEntity, state: Boolean) =
         appExecutors.diskIO().execute { localDataSource.setStoryBookmark(story, state) }

@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anggaps.kisahnabi.databinding.ActivityMainBinding
 import com.anggaps.kisahnabi.viewModel.ViewModelFactory
 import com.anggaps.kisahnabi.vo.Status
 
 class MainActivity : AppCompatActivity() {
-    
+
 
     private lateinit var activityMainBinding: ActivityMainBinding
 
@@ -43,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         with(activityMainBinding.rvStory) {
-            layoutManager = LinearLayoutManager(this@MainActivity   )
+            layoutManager = LinearLayoutManager(this@MainActivity)
 
             this.adapter = mainAdapter
 

@@ -8,7 +8,9 @@ import kotlinx.android.parcel.Parcelize
 data class StoryListResponse(
     var id: String,
     var titleName: String,
-    var turun :String,
+    var usia: String,
+    var tahunKelahiran: String,
+    var tempatKelahiran: String,
     var desc: String,
     var imagePath: String
 ) : Parcelable

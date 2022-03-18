@@ -13,20 +13,27 @@ data class StoryEntity(
     @ColumnInfo(name = "id")
     var id: String,
 
-    @ColumnInfo(name = "titleName")
-    var titleName :String,
+    @ColumnInfo(name = "TitleName")
+    var titleName: String,
 
-    @ColumnInfo(name = "turun")
-    var turun :String,
+    @ColumnInfo(name = "Usia")
+    var usia: String,
+
+    @ColumnInfo(name = "TahunKelahiran")
+    var tahunKelahiran: String,
+
+
+    @ColumnInfo(name = "TempatKelahiran")
+    var tempat: String,
 
     @ColumnInfo(name = "desc")
-    var desc :String,
+    var desc: String,
 
     @ColumnInfo(name = "bookmarked")
-    var bookmarked :Boolean,
+    var bookmarked: Boolean,
 
     @ColumnInfo(name = "imagePath")
-    var imagepath :String
+    var imagepath: String
 
 
 )

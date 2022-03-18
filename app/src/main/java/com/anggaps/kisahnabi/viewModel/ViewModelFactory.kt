@@ -29,9 +29,9 @@ class ViewModelFactory private constructor(private val mStoryRepository: StoryRe
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(mStoryRepository) as T
             }
-//            modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
-//                DetailViewModel(mStoryRepository) as T
-//            }
+            modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
+                DetailViewModel(mStoryRepository) as T
+            }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
     }

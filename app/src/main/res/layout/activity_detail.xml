@@ -7,4 +7,174 @@
     tools:context=".ui.detail.DetailActivity">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@drawable/bg_chocholate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginTop="140dp"
+                android:background="@drawable/bg_home_rad"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view13"
+                android:layout_width="60dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/home_rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view3" />
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="158dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view13">
+
+                <TextView
+                    android:id="@+id/tvNama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nama"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/TvUsia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="usia:" />
+
+                    <TextView
+                        android:id="@+id/TvIsiUsia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="isi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/TvTahunKelahiran"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tahun Kelahiran:" />
+
+                    <TextView
+                        android:id="@+id/TvIsiTahunKelahiran"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="isi" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <WebView
+                android:id="@+id/WvDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.6"
+                tools:ignore="WebViewLayout" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/TvDetail"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:text=""-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="90dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout">
+
+
+<!--                <FrameLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginRight="12dp"-->
+<!--                    android:foregroundGravity="center">-->
+
+<!--                    <Button-->
+<!--                        android:id="@+id/StartButton2x2"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="fill_parent"-->
+<!--                        android:gravity="center_vertical" />-->
+<!--                </FrameLayout>-->
+
+<!--                <FrameLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+
+<!--                    android:foregroundGravity="center">-->
+
+<!--                    <Button-->
+<!--                        android:id="@+id/StartButton2x3"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="fill_parent"-->
+<!--                        android:gravity="center_vertical" />-->
+<!--                </FrameLayout>-->
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
