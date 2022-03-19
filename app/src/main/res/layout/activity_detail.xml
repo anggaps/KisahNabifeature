@@ -167,7 +167,7 @@
                     android:foregroundGravity="center">
 
                     <Button
-                        android:id="@+id/StartButton2x2"
+                        android:id="@+id/btn_bookmark"
                         android:layout_width="50dp"
                         android:layout_height="fill_parent"
                         android:background="@drawable/tombol_bulat"

@@ -1,6 +1,7 @@
 package com.anggaps.kisahnabi.ui.detail
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -12,7 +13,7 @@ import com.anggaps.kisahnabi.viewModel.ViewModelFactory
 import com.anggaps.kisahnabi.vo.Status.ERROR
 import com.anggaps.kisahnabi.vo.Status.SUCCESS
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var activityDetailBinding: ActivityDetailBinding
     private lateinit var viewModel: DetailViewModel
@@ -29,6 +30,9 @@ class DetailActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
+
+
+        activityDetailBinding.btnBookmark.setOnClickListener(this)
 
         val mainAdapter = DetailAdapter()
 
@@ -64,6 +68,10 @@ class DetailActivity : AppCompatActivity() {
                 }
             }
         }
+
+
+
+
         with(activityDetailBinding.rvDetail) {
             layoutManager = LinearLayoutManager(this@DetailActivity, RecyclerView.HORIZONTAL, false)
             this.adapter = mainAdapter
@@ -78,5 +86,9 @@ class DetailActivity : AppCompatActivity() {
         activityDetailBinding.TvUsia.text = storyEntity.usia
         activityDetailBinding.TvTahunKelahiran.text = storyEntity.tahunKelahiran
         activityDetailBinding.WBDetail.loadData(storyEntity.desc, "text/html", "UTF-8")
+    }
+
+    override fun onClick(p0: View?) {
+        TODO("Not yet implemented")
     }
 }
