@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.anggaps.kisahnabi.data.source.local.entity.StoryEntity
 import com.anggaps.kisahnabi.databinding.ActivityDetailBinding
 import com.anggaps.kisahnabi.viewModel.ViewModelFactory
-import com.anggaps.kisahnabi.vo.Status
-import com.anggaps.kisahnabi.vo.Status.*
+import com.anggaps.kisahnabi.vo.Status.ERROR
+import com.anggaps.kisahnabi.vo.Status.SUCCESS
 
 class DetailActivity : AppCompatActivity() {
 
@@ -27,6 +29,8 @@ class DetailActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
+
+        val mainAdapter = DetailAdapter()
 
         val extra = intent.extras
         if (extra != null) {
@@ -48,15 +52,31 @@ class DetailActivity : AppCompatActivity() {
                     }
 
                 }
+
+                viewModel.getStoryDetail().observe(this) { storyDetail ->
+                    if (storyDetail != null) {
+                        when (storyDetail.status) {
+                            SUCCESS -> {
+                                mainAdapter.submitList(storyDetail.data)
+                            }
+                        }
+                    }
+                }
             }
         }
+        with(activityDetailBinding.rvDetail) {
+            layoutManager = LinearLayoutManager(this@DetailActivity, RecyclerView.HORIZONTAL, false)
+            this.adapter = mainAdapter
+
+        }
+
 
     }
 
     private fun populateStory(storyEntity: StoryEntity) {
-        activityDetailBinding.tvNama.text = storyEntity.titleName
+        activityDetailBinding.title.text = storyEntity.titleName
         activityDetailBinding.TvUsia.text = storyEntity.usia
         activityDetailBinding.TvTahunKelahiran.text = storyEntity.tahunKelahiran
-        activityDetailBinding.WvDetail.loadData(storyEntity.desc, "text/html", "UTF-8")
+        activityDetailBinding.WBDetail.loadData(storyEntity.desc, "text/html", "UTF-8")
     }
 }
