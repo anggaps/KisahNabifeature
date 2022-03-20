@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.anggaps.kisahnabi.data.StoryRepository
 import com.anggaps.kisahnabi.di.Injection
+import com.anggaps.kisahnabi.ui.bookmark.BookmarkViewModel
 import com.anggaps.kisahnabi.ui.detail.DetailViewModel
 import com.anggaps.kisahnabi.ui.home.MainViewModel
 
@@ -31,6 +32,9 @@ class ViewModelFactory private constructor(private val mStoryRepository: StoryRe
             }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 DetailViewModel(mStoryRepository) as T
+            }
+            modelClass.isAssignableFrom(BookmarkViewModel::class.java) -> {
+                BookmarkViewModel(mStoryRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

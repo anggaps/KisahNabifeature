@@ -30,7 +30,7 @@ data class StoryEntity(
     var desc: String,
 
     @ColumnInfo(name = "bookmarked")
-    var bookmarked: Boolean,
+    var bookmarked: Boolean = false,
 
     @ColumnInfo(name = "imagePath")
     var imagepath: String

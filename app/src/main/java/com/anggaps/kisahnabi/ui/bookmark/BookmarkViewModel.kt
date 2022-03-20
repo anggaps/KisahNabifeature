@@ -7,7 +7,7 @@ import com.anggaps.kisahnabi.data.StoryRepository
 import com.anggaps.kisahnabi.data.source.local.entity.StoryEntity
 
 class BookmarkViewModel(private val storyRepository: StoryRepository) : ViewModel() {
-    fun getBookmarks(): LiveData<PagedList<StoryEntity>> = storyRepository.getBookmarkedStory()
+    fun getBookmarks() = storyRepository.getBookmarkedStory()
 
     fun setBookmark(storyEntity: StoryEntity) {
         val newState = !storyEntity.bookmarked

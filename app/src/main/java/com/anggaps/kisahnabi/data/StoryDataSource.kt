@@ -10,9 +10,9 @@ interface StoryDataSource {
 
     fun getAllStory():LiveData<Resource<PagedList<StoryEntity>>>
 
-    fun getBookmarkedStory():LiveData<PagedList<StoryEntity>>
-
     fun getDetailStory(id:String): LiveData<Resource<StoryEntity>>
+
+    fun getBookmarkedStory():LiveData<PagedList<StoryEntity>>
 
     fun setStoryBookmark(story: StoryEntity, state: Boolean)
 

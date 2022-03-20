@@ -23,9 +23,9 @@ class BookmarkActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, factory)[BookmarkViewModel::class.java]
 
         adapter = BookmarkAdapter(this)
-        viewModel.getBookmarks().observe(this, { story ->
+        viewModel.getBookmarks().observe(this){ story ->
             adapter.submitList(story)
-        })
+        }
 
         with(binding) {
             rvBookmarked.layoutManager = LinearLayoutManager(this@BookmarkActivity)

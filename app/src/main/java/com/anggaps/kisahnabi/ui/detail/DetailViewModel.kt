@@ -12,13 +12,11 @@ import com.anggaps.kisahnabi.vo.Resource
 class DetailViewModel(private val storyRepository: StoryRepository) : ViewModel() {
     val storyId = MutableLiveData<String>()
 
-    private lateinit var detailStory: LiveData<Resource<StoryEntity>>
-
+//    private lateinit var detailStory: LiveData<Resource<StoryEntity>>
 
     fun setSelectedStory(storyId: String) {
         this.storyId.value = storyId
     }
-
 
     var story: LiveData<Resource<StoryEntity>> = Transformations.switchMap(storyId) { mStoryId ->
         storyRepository.getDetailStory(mStoryId)
@@ -27,21 +25,17 @@ class DetailViewModel(private val storyRepository: StoryRepository) : ViewModel(
     fun getStoryDetail(): LiveData<Resource<PagedList<StoryEntity>>> =
         storyRepository.getAllStory()
 
-    fun setStory(id: String) {
-        detailStory = storyRepository.getDetailStory(id)
-    }
 
 
     fun setBookmark() {
-        val StoryResource = story.value
-        if (StoryResource != null) {
-            val storyEntity = StoryResource.data
-
-            if (storyEntity != null) {
-                val storyEntity = storyEntity
-                val newState = !storyEntity.bookmarked
-                storyRepository.setStoryBookmark(storyEntity, newState)
-            }
+        val resource = story.value
+        if (resource?.data != null) {
+            val newState = !resource.data.bookmarked
+            storyRepository.setStoryBookmark(resource.data, newState)
         }
+    }
+
+    companion object {
+        const val STOREYS = "story"
     }
 }

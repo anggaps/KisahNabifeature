@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.anggaps.kisahnabi.R
 import com.anggaps.kisahnabi.data.source.local.entity.StoryEntity
 import com.anggaps.kisahnabi.databinding.ActivityDetailBinding
 import com.anggaps.kisahnabi.viewModel.ViewModelFactory
+import com.anggaps.kisahnabi.vo.Status
 import com.anggaps.kisahnabi.vo.Status.ERROR
 import com.anggaps.kisahnabi.vo.Status.SUCCESS
 
@@ -41,7 +43,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
             val storyId = extra.getString(EXTRA_STORY)
             if (storyId != null) {
                 viewModel.setSelectedStory(storyId)
-
+                setupState()
                 viewModel.story.observe(this) { storyDetail ->
                     if (storyDetail != null) {
                         when (storyDetail.status) {
@@ -54,9 +56,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
 //                            LOADING -> TODO()
                         }
                     }
-
                 }
-
                 viewModel.getStoryDetail().observe(this) { storyDetail ->
                     if (storyDetail != null) {
                         when (storyDetail.status) {
@@ -72,6 +72,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
+
         with(activityDetailBinding.rvDetail) {
             layoutManager = LinearLayoutManager(this@DetailActivity, RecyclerView.HORIZONTAL, false)
             this.adapter = mainAdapter
@@ -81,6 +82,34 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    private fun setupState(): Boolean {
+        viewModel.story.observe(this, { storyid ->
+            if (storyid != null) {
+                when (storyid.status) {
+                    SUCCESS -> if (storyid.data != null) {
+                        val state = storyid.data.bookmarked
+                        setBookmarkState(state)
+                    }
+                    Status.ERROR -> {
+                        Toast.makeText(applicationContext, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            }
+        })
+        return true
+    }
+
+    private fun setBookmarkState(state: Boolean) {
+        val fab = activityDetailBinding.btnBookmark
+        if (state) {
+            fab.setImageResource(R.drawable.ic_bookmark_filled)
+        } else {
+            fab.setImageResource(R.drawable.ic_bookmark)
+        }
+    }
+
+
     private fun populateStory(storyEntity: StoryEntity) {
         activityDetailBinding.title.text = storyEntity.titleName
         activityDetailBinding.TvUsia.text = storyEntity.usia
@@ -88,7 +117,12 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
         activityDetailBinding.WBDetail.loadData(storyEntity.desc, "text/html", "UTF-8")
     }
 
-    override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
+    override fun onClick(p0: View) {
+        when (p0.id) {
+            R.id.btn_bookmark -> {
+                viewModel.setBookmark()
+            }
+        }
     }
+
 }

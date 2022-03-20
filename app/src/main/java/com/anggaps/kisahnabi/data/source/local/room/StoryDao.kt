@@ -22,7 +22,6 @@ interface StoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertStory(course: List<StoryEntity>)
 
-
     @Update
     fun updateStory(course: StoryEntity)
 
