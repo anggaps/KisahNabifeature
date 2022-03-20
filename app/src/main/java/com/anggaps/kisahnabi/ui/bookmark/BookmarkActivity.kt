@@ -17,7 +17,8 @@ class BookmarkActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bookmark)
+        binding = ActivityBookmarkBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[BookmarkViewModel::class.java]

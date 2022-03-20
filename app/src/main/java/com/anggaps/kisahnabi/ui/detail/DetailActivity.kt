@@ -30,6 +30,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
         activityDetailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(activityDetailBinding.root)
 
+
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
@@ -68,8 +69,6 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-
-
 
 
 
@@ -122,6 +121,14 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_bookmark -> {
                 viewModel.setBookmark()
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount <= 1) {
+            finish()
+        } else {
+            super.onBackPressed()
         }
     }
 

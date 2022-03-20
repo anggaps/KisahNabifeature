@@ -1,14 +1,17 @@
 package com.anggaps.kisahnabi.ui.home
 
 import android.content.Intent
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.anggaps.kisahnabi.data.source.local.entity.StoryEntity
 import com.anggaps.kisahnabi.databinding.ItemListBinding
 import com.anggaps.kisahnabi.ui.detail.DetailActivity
+import java.util.logging.Handler
 
 class MainAdapter : PagedListAdapter<StoryEntity, MainAdapter.MainViewHolder>(DIFF_CALLBACK) {
 
@@ -42,7 +45,10 @@ class MainAdapter : PagedListAdapter<StoryEntity, MainAdapter.MainViewHolder>(DI
             with(binding) {
                 tvItemName.text = story.titleName
                 tvItemTurun.text = story.tempat
+
+
                 itemView.setOnClickListener {
+
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_STORY, story.id)
                     itemView.context.startActivity(intent)

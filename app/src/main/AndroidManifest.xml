@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.anggaps.kisahnabi">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +16,11 @@
             android:exported="false" />
         <activity
             android:name=".ui.detail.DetailActivity"
-            android:exported="false" />
+            android:exported="false">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ui.home.MainActivity" />
+        </activity>
         <activity
             android:name=".ui.home.MainActivity"
             android:exported="true">
