@@ -39,7 +39,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:src="@tools:sample/avatars"/>
+               android:background="@color/purple_500"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -55,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
                 android:textSize="10sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 tools:text="Nama" />
             <TextView

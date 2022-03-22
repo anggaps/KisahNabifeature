@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,7 @@ import com.anggaps.kisahnabi.vo.Status
 import com.anggaps.kisahnabi.vo.Status.ERROR
 import com.anggaps.kisahnabi.vo.Status.SUCCESS
 
-class DetailActivity : AppCompatActivity(), View.OnClickListener {
+class DetailActivity() : AppCompatActivity(), View.OnClickListener, DetailActivityCallback {
 
     private lateinit var activityDetailBinding: ActivityDetailBinding
     private lateinit var viewModel: DetailViewModel
@@ -36,6 +37,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
 
 
         activityDetailBinding.btnBookmark.setOnClickListener(this)
+
 
         val mainAdapter = DetailAdapter()
 
@@ -82,12 +84,15 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setupState(): Boolean {
-        viewModel.story.observe(this, { storyid ->
+        viewModel.story.observe(this) { storyid ->
             if (storyid != null) {
                 when (storyid.status) {
                     SUCCESS -> if (storyid.data != null) {
                         val state = storyid.data.bookmarked
                         setBookmarkState(state)
+                    }
+                    Status.LOADING -> {
+                        setBookmarkState(false)
                     }
                     Status.ERROR -> {
                         Toast.makeText(applicationContext, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
@@ -95,7 +100,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
             }
-        })
+        }
         return true
     }
 
@@ -114,9 +119,14 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
         activityDetailBinding.TvUsia.text = storyEntity.usia
         activityDetailBinding.TvTahunKelahiran.text = storyEntity.tahunKelahiran
         activityDetailBinding.WBDetail.loadData(storyEntity.desc, "text/html", "UTF-8")
+        activityDetailBinding.buttonBagikan.setOnClickListener {
+            onShareClick(storyEntity)
+        }
     }
 
+
     override fun onClick(p0: View) {
+        val story: StoryEntity
         when (p0.id) {
             R.id.btn_bookmark -> {
                 viewModel.setBookmark()
@@ -130,6 +140,19 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onShareClick(story: StoryEntity) {
+        val nameType = "text/plain"
+        ShareCompat.IntentBuilder
+            .from(this)
+            .setType(nameType)
+            .setChooserTitle("Bagikan aplikasi ini sekarang.")
+            .setText(
+                "Ingin tau kisah nabi ${story.titleName} segera download qara'a sekarang di playstore dan apps " +
+                        "store"
+            )
+            .startChooser()
     }
 
 }

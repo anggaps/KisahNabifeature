@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.bookmark.BookmarkActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="246dp"
+        android:layout_height="232dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rv_bookmarked"
+        app:layout_constraintVertical_bias="0.307"
+        app:srcCompat="@drawable/empty_state" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_bookmarked"
         android:layout_width="match_parent"
@@ -14,4 +25,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

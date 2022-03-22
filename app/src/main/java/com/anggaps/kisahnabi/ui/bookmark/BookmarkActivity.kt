@@ -1,11 +1,12 @@
 package com.anggaps.kisahnabi.ui.bookmark
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.anggaps.kisahnabi.R
 import com.anggaps.kisahnabi.databinding.ActivityBookmarkBinding
+
 import com.anggaps.kisahnabi.viewModel.ViewModelFactory
 
 class BookmarkActivity : AppCompatActivity() {
@@ -22,10 +23,17 @@ class BookmarkActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[BookmarkViewModel::class.java]
-
         adapter = BookmarkAdapter(this)
-        viewModel.getBookmarks().observe(this){ story ->
-            adapter.submitList(story)
+        viewModel.getBookmarks().observe(this) { story ->
+            if (story.isEmpty()){
+                binding.imageView2.visibility = View.VISIBLE
+            }else{
+                binding.imageView2.visibility = View.GONE
+                adapter.submitList(story)
+
+            }
+
+
         }
 
         with(binding) {
@@ -33,6 +41,6 @@ class BookmarkActivity : AppCompatActivity() {
             rvBookmarked.adapter = adapter
 
         }
-
     }
+
 }
