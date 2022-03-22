@@ -71,6 +71,14 @@
                 tools:text="Turun Di" />
         </LinearLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_unbookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:clickable="true"
+            card_view:srcCompat="@drawable/ic_bookmark" />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

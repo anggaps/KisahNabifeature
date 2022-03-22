@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KisahNabi</string>
+    <string name="message_ok">OK</string>
+    <string name="message_undo">Batalkan menghapus item sebelumnya?</string>
 </resources>

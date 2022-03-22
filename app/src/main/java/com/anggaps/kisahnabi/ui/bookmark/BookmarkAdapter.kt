@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.anggaps.kisahnabi.data.source.local.entity.StoryEntity
 import com.anggaps.kisahnabi.databinding.ItemListBinding
+import com.anggaps.kisahnabi.databinding.ItemListBookmarkBinding
 import com.anggaps.kisahnabi.ui.detail.DetailActivity
 
 class BookmarkAdapter(private val callback: BookmarkActivity) :
@@ -26,7 +27,7 @@ class BookmarkAdapter(private val callback: BookmarkActivity) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryViewHolder {
-        val itemBookmarkBinding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBookmarkBinding = ItemListBookmarkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return StoryViewHolder(itemBookmarkBinding)
     }
 
@@ -40,7 +41,7 @@ class BookmarkAdapter(private val callback: BookmarkActivity) :
         }
     }
 
-    class StoryViewHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class StoryViewHolder(private val binding: ItemListBookmarkBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(story: StoryEntity) {
             with(binding) {
                 tvItemName.text = story.titleName
@@ -54,5 +55,7 @@ class BookmarkAdapter(private val callback: BookmarkActivity) :
 
         }
     }
+
+    fun getSwipedData(swipedPosition: Int): StoryEntity? = getItem(swipedPosition)
 
 }

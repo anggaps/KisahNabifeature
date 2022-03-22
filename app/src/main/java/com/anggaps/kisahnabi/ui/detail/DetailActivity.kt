@@ -1,5 +1,6 @@
 package com.anggaps.kisahnabi.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anggaps.kisahnabi.R
 import com.anggaps.kisahnabi.data.source.local.entity.StoryEntity
 import com.anggaps.kisahnabi.databinding.ActivityDetailBinding
+import com.anggaps.kisahnabi.ui.home.MainActivity
 import com.anggaps.kisahnabi.viewModel.ViewModelFactory
 import com.anggaps.kisahnabi.vo.Status
 import com.anggaps.kisahnabi.vo.Status.ERROR
@@ -37,6 +39,7 @@ class DetailActivity() : AppCompatActivity(), View.OnClickListener, DetailActivi
 
 
         activityDetailBinding.btnBookmark.setOnClickListener(this)
+        activityDetailBinding.btnBack.setOnClickListener(this)
 
 
         val mainAdapter = DetailAdapter()
@@ -74,7 +77,7 @@ class DetailActivity() : AppCompatActivity(), View.OnClickListener, DetailActivi
 
 
 
-        with(activityDetailBinding.rvDetail) {
+        with(activityDetailBinding.rvHorizontal) {
             layoutManager = LinearLayoutManager(this@DetailActivity, RecyclerView.HORIZONTAL, false)
             this.adapter = mainAdapter
 
@@ -116,9 +119,9 @@ class DetailActivity() : AppCompatActivity(), View.OnClickListener, DetailActivi
 
     private fun populateStory(storyEntity: StoryEntity) {
         activityDetailBinding.title.text = storyEntity.titleName
-        activityDetailBinding.TvUsia.text = storyEntity.usia
-        activityDetailBinding.TvTahunKelahiran.text = storyEntity.tahunKelahiran
-        activityDetailBinding.WBDetail.loadData(storyEntity.desc, "text/html", "UTF-8")
+        activityDetailBinding.TvIsiUsia.text = storyEntity.usia
+        activityDetailBinding.TvIsiTahunKelahiran.text = storyEntity.tahunKelahiran
+        activityDetailBinding.wbDetail.loadData(storyEntity.desc, "text/html", "UTF-8")
         activityDetailBinding.buttonBagikan.setOnClickListener {
             onShareClick(storyEntity)
         }
@@ -126,10 +129,13 @@ class DetailActivity() : AppCompatActivity(), View.OnClickListener, DetailActivi
 
 
     override fun onClick(p0: View) {
-        val story: StoryEntity
         when (p0.id) {
             R.id.btn_bookmark -> {
                 viewModel.setBookmark()
+            }
+            R.id.btn_back -> {
+                val intent = Intent(p0.context, MainActivity::class.java)
+               startActivity(intent)
             }
         }
     }
